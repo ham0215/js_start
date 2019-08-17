@@ -1,0 +1,9 @@
+{
+  "name": "js_start",
+  "version": "0.0.1",
+  "description": "This is first project using js.",
+  "main": "index.js",
+  "repository": "https://github.com/ham0215/js_start",
+  "author": "ham",
+  "license": "MIT"
+}
