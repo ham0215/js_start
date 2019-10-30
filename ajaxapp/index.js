@@ -1,27 +1,51 @@
-function fetchUserInfo(userId) {
-  fetch(`https://api.github.com/users/${userId}`)
+// eslint-disable-next-line no-unused-vars
+function main() {
+  fetchUserInfo("js-primer-example")
+    .catch((error) => {
+      console.error(`エラーが発生しました (${error})`);
+    });
+}
+
+function fetchUserInfo() {
+  const userId = getUserId();
+  return fetch(`https://api.github.com/users/${userId}`)
     .then(response => {
       if (!response.ok) {
-        console.error("サーバーエラー", response);
+        throw new Error(`${response.status}: ${response.statusText}`);
       } else {
         return response.json().then(userInfo => {
-          const view = escapeHTML`
-                    <h4>${userInfo.name} (@${userInfo.login})</h4>
-                    <img src="${userInfo.avatar_url}" alt="${userInfo.login}" height="100">
-                    <dl>
-                      <dt>Location</dt>
-                      <dd>${userInfo.location}</dd>
-                      <dt>Repositories</dt>
-                      <dd>${userInfo.public_repos}</dd>
-                    </dl>
-                    `;
-          const result = document.getElementById("result");
-          result.innerHTML = view;
+          // HTMLの組み立て
+          const view = createView(userInfo);
+          // HTMLの挿入
+          displayView(view);
         });
       }
-    }).catch(error => {
-      console.error("ネットワークエラー", error);
+    }).catch(() => {
+      throw new Error("ネットワークエラー");
     });
+}
+
+function getUserId() {
+  const value = document.getElementById("userId").value;
+  return encodeURIComponent(value);
+}
+
+function createView(userInfo) {
+  return escapeHTML`
+  <h4>${userInfo.name} (@${userInfo.login})</h4>
+  <img src="${userInfo.avatar_url}" alt="${userInfo.login}" height="100">
+  <dl>
+      <dt>Location</dt>
+      <dd>${userInfo.location}</dd>
+      <dt>Repositories</dt>
+      <dd>${userInfo.public_repos}</dd>
+  </dl>
+  `;
+}
+
+function displayView(view) {
+  const result = document.getElementById("result");
+  result.innerHTML = view;
 }
 
 function escapeSpecialChars(str) {
