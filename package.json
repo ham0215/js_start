@@ -5,5 +5,13 @@
   "main": "index.js",
   "repository": "https://github.com/ham0215/js_start",
   "author": "ham",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "eslint": "^6.6.0",
+    "eslint-plugin-react": "^7.16.0",
+    "http-server": "^0.11.1",
+    "typescript": "^3.6.4"
+  }
 }
