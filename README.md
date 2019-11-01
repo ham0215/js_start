@@ -1,26 +1,22 @@
 # js_start
 This is first project using js.
 
-# initial settings
-
-* create Dockerfile, docker-compose
-
-* docker-compose build and up
+## yarn init and install
 
 ```
-$ docker-compose up --build -d
-```
-
-* yarn init and install
-
-```
-$ docker-compose exec app bash
 # yarn init
 # yarn install
 ```
 
-* start local server. access to http://localhost:8080
+## start local server
 
 ```
-# http-server
+http-server
+```
+access to http://localhost:8080
+
+## run test
+
+```
+yarn test
 ```

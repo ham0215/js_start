@@ -18,5 +18,8 @@
   },
   "devDependencies": {
     "mocha": "6"
+  },
+  "scripts": {
+    "test": "yarn run mocha"
   }
 }
