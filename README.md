@@ -1,6 +1,8 @@
 # js_start
 This is first project using js.
 
+![](https://github.com/ham0215/js_start/workflows/Node%20CI/badge.svg)
+
 ## yarn init and install
 
 ```
