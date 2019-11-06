@@ -4,8 +4,9 @@ This is first project using js.
 ## yarn init and install
 
 ```
-# yarn init
-# yarn install
+yarn init
+yarn install
+yarn add http-server
 ```
 
 ## start local server
