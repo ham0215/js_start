@@ -21,3 +21,20 @@ access to http://localhost:8080
 ```
 yarn test
 ```
+
+## apps
+
+### ajaxapp
+Sample page using ajax.
+Run http-server and access to http://localhost:8080/ajaxapp
+
+### nodecli
+Convert from md to html using node.
+
+```
+node nodecli/main.js ./nodecli/sample.md
+```
+
+### todoapp
+Web application to manage todo.
+Run http-server and access to http://localhost:8080/todoapp
