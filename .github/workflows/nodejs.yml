@@ -1,0 +1,46 @@
+name: Node CI
+
+on:
+  push:
+    paths-ignore:
+      - README.md
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Cache node modules
+      uses: actions/cache@preview
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: yarn install
+      run: |
+        yarn install
+    - name: test
+      run: |
+        yarn test
+    - name: success notify
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_MESSAGE: 'Post Content :rocket:'
+        SLACK_CHANNEL: ci
+    - name: failure notify
+      if: failure()
+      uses: rtCamp/action-slack-notify@master
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_MESSAGE: 'Post Content :rocket:'
+        SLACK_CHANNEL: ci
+        SLACK_COLOR: '#FF0000'
