@@ -1,2 +1,3 @@
 import { App } from "./src/App.js";
-new App();
+const app = new App();
+app.mount();
